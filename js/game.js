@@ -11,7 +11,7 @@ let config = {
         create: create,
         update: update
     },
-    backgroundColor: '#fdec96',
+    backgroundColor: '#f7e07f',
     audio: {
         disableWebAudio: true
     },
@@ -75,14 +75,14 @@ function preload() {
     this.load.image('star', './assets/yellow-star.png');
     
     //---background pattern---
-    this.load.image('gameBg', './assets/feuilledroite-01-01.png');
+    this.load.image('gameBg', './assets/newrobinpattern-01.png');
 
 }
 
 function create() {
-    gameBg = this.add.image(180, 320, 'gameBg');
+    gameBg = this.add.image(180, 310, 'gameBg');
     gameBg.setVisible(false);
-    gameBg.alpha = 0.8;
+//    gameBg.alpha = 0.8;
     
     var image = this.add.image(200, 250, 'background');
     image.alpha = 0.3;
