@@ -49,14 +49,15 @@ function init() {
 
 function preload() {
     //---personnage en transparence---
-    this.load.image('background', './assets/moine-01.png');
+    this.load.image('background', './assets/robindesbois-01.png');
     
     //----membres----
-    this.load.image('head', './assets/moiHead-01.png');
-    this.load.image('body', './assets/moiBody-01.png');
-    this.load.image('hips', './assets/moiLegs2-01.png');
-    this.load.image('legL', './assets/moiFootL-01.png');
-    this.load.image('legR', './assets/moiFootR-01.png');
+    this.load.image('head', './assets/robHead-01.png');
+    this.load.image('body', './assets/robBody-01.png');
+    this.load.image('legL', './assets/robLegL-01.png');
+    this.load.image('legR', './assets/robLegR-01.png');
+    this.load.image('footL', './assets/robFootL-01.png');
+    this.load.image('footR', './assets/robFootR-01.png');
     
      //---arrow next---
     this.load.image('nextArrow', './assets/yellow-arrow.png');
@@ -127,43 +128,51 @@ function create() {
     body.setName('body');
 //    body.setScale(0.45);
     
-    var hips = this.add.image(70, 550, 'hips', Phaser.Math.RND.pick(frames)).setInteractive();
-    this.input.setDraggable(hips);
-    hips.setName('hips');
-//    hips.setScale(0.45);
-    
-    var legL = this.add.image(50, 212, 'legL', Phaser.Math.RND.pick(frames)).setInteractive();
+    var legL = this.add.image(120, 550, 'legL', Phaser.Math.RND.pick(frames)).setInteractive();
     this.input.setDraggable(legL);
     legL.setName('legL');
+    
+    var legR = this.add.image(40, 550, 'legR', Phaser.Math.RND.pick(frames)).setInteractive();
+    this.input.setDraggable(legR);
+    legR.setName('legR')
+//    hips.setScale(0.45);
+    
+    var footL = this.add.image(50, 320, 'footL', Phaser.Math.RND.pick(frames)).setInteractive();
+    this.input.setDraggable(footL);
+    footL.setName('footL');
 //    legL.setScale(0.45);
     
-    var legR = this.add.image(50, 280, 'legR', Phaser.Math.RND.pick(frames)).setInteractive();
-    this.input.setDraggable(legR);
-    legR.setName('legR');
+    var footR = this.add.image(50, 420, 'footR', Phaser.Math.RND.pick(frames)).setInteractive();
+    this.input.setDraggable(footR);
+    footR.setName('footR');
 //    legR.setScale(0.45);
     
     //-----les drop zones----
     // margin left, margin top, width, heigth 
     //  A drop zone
-    var zone = this.add.zone(187, 158, 100, 90).setRectangleDropZone(100, 90);
+    var zone = this.add.zone(227, 140, 100, 90).setRectangleDropZone(100, 90);
     zone.setName('head');
     
     //  A drop zone
-    var zone2 = this.add.zone(200, 220, 240, 70).setRectangleDropZone(240, 70);
+    var zone2 = this.add.zone(182, 202, 240, 100).setRectangleDropZone(240, 100);
     zone2.setName('body');
     
     //  A drop zone
-    var zone3 = this.add.zone(195, 340, 180, 85).setRectangleDropZone(180, 85);
-    zone3.setName('hips');
+    var zone3 = this.add.zone(200, 350, 50, 70).setRectangleDropZone(50, 70);
+    zone3.setName('legL');
     
     
     //  A drop zone
-    var zone4 = this.add.zone(232, 395, 70, 30).setRectangleDropZone(70, 30);
+    var zone4 = this.add.zone(273, 344, 70, 70).setRectangleDropZone(70, 70);
     zone4.setName('legR');
     
     //  A drop zone
-    var zone5 = this.add.zone(127, 396, 60, 25).setRectangleDropZone(60, 25);
-    zone5.setName('legL');
+    var zone5 = this.add.zone(182, 410, 60, 60).setRectangleDropZone(60, 60);
+    zone5.setName('footL');
+    
+     //  A drop zone
+    var zone6 = this.add.zone(317, 409, 60, 60).setRectangleDropZone(60, 60);
+    zone6.setName('footR');
     
 //      var graphics = this.add.graphics();
 //    graphics.lineStyle(2, 0xffff00);
@@ -176,6 +185,8 @@ function create() {
 //    graphics.strokeRect(zone4.x - zone4.input.hitArea.width / 2, zone4.y - zone4.input.hitArea.height / 2, zone4.input.hitArea.width, zone4.input.hitArea.height);
 //    
 //    graphics.strokeRect(zone5.x - zone5.input.hitArea.width / 2, zone5.y - zone5.input.hitArea.height / 2, zone5.input.hitArea.width, zone5.input.hitArea.height);
+//    
+//        graphics.strokeRect(zone6.x - zone6.input.hitArea.width / 2, zone6.y - zone6.input.hitArea.height / 2, zone6.input.hitArea.width, zone6.input.hitArea.height);
     
  
     
@@ -237,7 +248,7 @@ else{
             
         }
         
-        if(successfulDropoff === 5){
+        if(successfulDropoff === 6){
             console.log("well done!!!!");
             nextArrow.setVisible(true);
             nextArrow.setInteractive();
@@ -255,7 +266,7 @@ else{
 
 
 function update() {
-    if(successfulDropoff === 5){
+    if(successfulDropoff === 6){
          starScale += 0.001;
         star.setScale(starScale);
         if (starScale > 0.2){
@@ -270,7 +281,7 @@ function update() {
 
 function onClick(){
 //    window.open("https://www.google.com", "_blank");
-    window.location.replace("http://www.w3schools.com");
+    window.location.replace("https://games.caramel.be/friar-tuck/index.html");
 
 }
 
