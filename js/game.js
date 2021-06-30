@@ -54,7 +54,7 @@ function preload() {
     //---personnage en transparence---
     this.load.image('background', './assets/robindesbois-01.png');
     
-    this.load.image('cover', './assets/robinCOVER-01.png');
+    this.load.image('cover', './assets/robinCOVER2-01.png');
     
     //----membres----
     this.load.image('head', './assets/robHead-01.png');
