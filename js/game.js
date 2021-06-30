@@ -13,7 +13,7 @@ let config = {
     },
     backgroundColor: '#f7e07f',
     audio: {
-        disableWebAudio: true
+        disableWebAudio: false
     },
     autoCenter: true
 };
@@ -85,8 +85,19 @@ function preload() {
 }
 
 function create() {
+    
+    if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
+  // true for mobile device
+  console.log("mobile device");
+}else{
+  // false for not mobile device
+  console.log("not mobile device");
+            hasBeenClicked = true;
+}
+    
     gameCover = this.add.image(180, 320, 'cover');
     gameCover.setDepth(5);
+    gameCover.setVisible(false);
     
     gameBg = this.add.image(180, 320, 'gameBg');
     gameBg.setVisible(false);
@@ -108,6 +119,9 @@ function create() {
     wrongSound = this.sound.add('wrong');
     correctSound = this.sound.add('correct');
     finishSound = this.sound.add('finish');
+    
+    
+//    holdSound.audio.autoplay = true;
     
     //----audio  btn----
     soundButton = this.add.image(50,50, 'soundBtn');
