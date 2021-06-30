@@ -43,6 +43,9 @@ var gameBg;
 var star;
 var starScale;
 
+var gameCover;
+var startClicked;
+
 //
 function init() {
 }
@@ -50,6 +53,8 @@ function init() {
 function preload() {
     //---personnage en transparence---
     this.load.image('background', './assets/robindesbois-01.png');
+    
+    this.load.image('cover', './assets/robinCOVER-01.png');
     
     //----membres----
     this.load.image('head', './assets/robHead-01.png');
@@ -80,6 +85,9 @@ function preload() {
 }
 
 function create() {
+    gameCover = this.add.image(180, 320, 'cover');
+    gameCover.setDepth(5);
+    
     gameBg = this.add.image(180, 310, 'gameBg');
     gameBg.setVisible(false);
 //    gameBg.alpha = 0.8;
@@ -194,9 +202,10 @@ function create() {
     //---drag and drop mechanics---
     this.input.on('dragstart', function (pointer, gameObject) {
 
+         if (startClicked === true){
         this.children.bringToTop(gameObject);
-        holdSound.play();
-
+              holdSound.play();
+         }
     }, this);
 
     this.input.on('drag', function (pointer, gameObject, dragX, dragY) {
@@ -257,9 +266,20 @@ else{
             gameBg.setVisible(true);
     }
         
-        nextArrow.on('pointerdown', onClick);
 
     });
+    
+    nextArrow.on('pointerdown', onClick);
+    
+         this.input.on('pointerdown', function(pointer){
+         console.log(pointer.x);
+         console.log(pointer.y);
+        if(pointer.x >= 27 && pointer.x <= 118  && pointer.y >= 410 && pointer.y <=500){
+//            console.log("cliqué sur start");
+            startClicked = true;
+//            sessionStorage.setItem("start clicked", "yes");
+            gameCover.setVisible(false);
+}});
     
 
 }
