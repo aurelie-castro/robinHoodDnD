@@ -88,9 +88,9 @@ function create() {
     gameCover = this.add.image(180, 320, 'cover');
     gameCover.setDepth(5);
     
-    gameBg = this.add.image(180, 310, 'gameBg');
+    gameBg = this.add.image(180, 320, 'gameBg');
     gameBg.setVisible(false);
-//    gameBg.alpha = 0.8;
+    gameBg.alpha = 0.8;
     
     var image = this.add.image(200, 250, 'background');
     image.alpha = 0.3;
