@@ -86,18 +86,18 @@ function preload() {
 
 function create() {
     
-    if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
-  // true for mobile device
-  console.log("mobile device");
-}else{
-  // false for not mobile device
-  console.log("not mobile device");
-            hasBeenClicked = true;
-}
+//    if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
+//  // true for mobile device
+//  console.log("mobile device");
+//}else{
+//  // false for not mobile device
+//  console.log("not mobile device");
+//            hasBeenClicked = true;
+//}
     
     gameCover = this.add.image(180, 320, 'cover');
     gameCover.setDepth(5);
-    gameCover.setVisible(false);
+//    gameCover.setVisible(false);
     
     gameBg = this.add.image(180, 320, 'gameBg');
     gameBg.setVisible(false);
