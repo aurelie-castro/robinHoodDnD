@@ -28,13 +28,11 @@ let successfulDropoff;
 var nextArrow;
 
 //vars de son
+var startSound;
 var holdSound;
 var wrongSound;
 var correctSound;
 var finishSound;
-
-var soundButton;
-var hasBeenClicked;
 
 //var du background
 var gameBg;
@@ -68,13 +66,12 @@ function preload() {
     this.load.image('nextArrow', './assets/yellow-arrow.png');
     
     //---audio files---
+    this.load.audio('start', './assets/start1.wav');
     this.load.audio('hold', './assets/hold.wav');
     this.load.audio('wrong', './assets/wrong.wav');
     this.load.audio('correct', './assets/correct.wav');
     this.load.audio('finish', './assets/finish.wav');
     
-    //---sound button----
-    this.load.image('soundBtn', './assets/volume-up (3).png');
     
     //---star at the end---
     this.load.image('star', './assets/yellow-star.png');
@@ -85,6 +82,8 @@ function preload() {
 }
 
 function create() {
+    
+    startClicked = false;
     
     gameCover = this.add.image(180, 320, 'cover');
     gameCover.setDepth(5);
@@ -104,19 +103,11 @@ function create() {
     star.setDepth(0);
     
     //---audio---
+    startSound = this.sound.add('start');
     holdSound = this.sound.add('hold');
     wrongSound = this.sound.add('wrong');
     correctSound = this.sound.add('correct');
     finishSound = this.sound.add('finish');
-    
-    
-    
-    //----audio  btn----
-    soundButton = this.add.image(50,50, 'soundBtn');
-    soundButton.setScale(0.1);
-    soundButton.setInteractive();
-    soundButton.alpha = 0.5;
-    soundButton.on('pointerdown', enableMusic);
     
     //drop off counter
     successfulDropoff = 0;
@@ -211,17 +202,13 @@ function create() {
             gameObject.y = dropZone.y;
 
             gameObject.input.enabled = false;
-            console.log(dropZone.name == gameObject.name);
-            console.log('successful dropoff of ' + gameObject.name + ' in ' + dropZone.name);
             
             successfulDropoff++;
-            console.log(successfulDropoff);
             correctSound.play();
         }
 else{
             gameObject.x = gameObject.input.dragStartX;
             gameObject.y = gameObject.input.dragStartY;
-            console.log('failed dropoff of ' + gameObject.name + ' in ' + dropZone.name);
     
             wrongSound.play();
         }
@@ -239,7 +226,6 @@ else{
         }
         
         if(successfulDropoff === 6){
-            console.log("well done!!!!");
             nextArrow.setVisible(true);
             nextArrow.setInteractive();
             finishSound.play();
@@ -253,11 +239,12 @@ else{
     nextArrow.on('pointerdown', onClick);
     
          this.input.on('pointerdown', function(pointer){
-         console.log(pointer.x);
-         console.log(pointer.y);
         if(pointer.x >= 27 && pointer.x <= 118  && pointer.y >= 410 && pointer.y <=500){
-            startClicked = true;
-            gameCover.setVisible(false);
+             startSound.play();
+            setTimeout(function(){ 
+                startClicked = true; 
+                gameCover.setVisible(false);
+            }, 500);
 }});
     
 
@@ -272,17 +259,10 @@ function update() {
             starScale = 0.2;
         } }
     
-    if (hasBeenClicked === true){
-        soundButton.alpha = 1;
-        }
 
 }
 
 function onClick(){
     window.location.replace("https://games.caramel.be/friar-tuck/index.html");
 
-}
-
-function enableMusic(){
-    hasBeenClicked = true;
 }
