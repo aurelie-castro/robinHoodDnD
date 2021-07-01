@@ -239,7 +239,7 @@ else{
     nextArrow.on('pointerdown', onClick);
     
          this.input.on('pointerdown', function(pointer){
-        if(pointer.x >= 27 && pointer.x <= 118  && pointer.y >= 410 && pointer.y <=500){
+        if(pointer.x >= 27 && pointer.x <= 118  && pointer.y >= 410 && pointer.y <=500 && startClicked === false){
              startSound.play();
             setTimeout(function(){ 
                 startClicked = true; 
